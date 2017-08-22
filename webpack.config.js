@@ -24,7 +24,7 @@ const common = {
         include: PATHS.src,
       },
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel-loader?cacheDirectory',
         include: PATHS.src,
       }
@@ -44,7 +44,6 @@ if (ENV === 'development') {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      progress: true,
 
       // Display only errors to reduce the amount of output.
       stats: 'errors-only',
@@ -57,7 +56,8 @@ if (ENV === 'development') {
       new webpack.HotModuleReplacementPlugin(),
     ],
   });
-} else {
+}
+else {
   // config can be added here for minifying / etc
   module.exports = merge(common, {
   plugins: [
