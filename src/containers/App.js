@@ -7,6 +7,7 @@ import MuiThemeProvider           from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
 import { HashRouter, Route }      from 'react-router-dom'
 
 /* actions */
@@ -14,8 +15,17 @@ import * as uiActionCreators from '../core/actions/actions-ui';
 
 /* application containers */
 import Home       from './Home';
+import Item1       from './Item1';
 
 injectTapEventPlugin();
+
+const styles = {
+  backgroundStyle: {
+    boxShadow: '0px 2px 12px rgba(0,0,0,.2)',
+    padding: '16px 16px 10px',
+    height: '100%'
+  }
+}
 
 export class App extends Component {
   constructor(props) {
@@ -33,7 +43,7 @@ export class App extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div>
+        <div style={{height: '100vh'}}>
           <AppBar title="Example"
                   className="app-bar"
                   style={{position: 'fixed', top: '0'}}
@@ -45,12 +55,15 @@ export class App extends Component {
             <MenuItem primaryText="Menu 1"/>
             <MenuItem primaryText="Menu 2"/>
           </Drawer>
-          <div className="container">
+          <div style={{marginTop: '64px', height: '100%'}}>
+            <Paper zDepth={1} style={styles.backgroundStyle}>
             <HashRouter>
               <div>
                 <Route exact path="/" component={Home}/>
+                <Route exact path="/item1" component={Item1}/>
               </div>
             </HashRouter>
+            </Paper>
           </div>
         </div>
       </MuiThemeProvider>
