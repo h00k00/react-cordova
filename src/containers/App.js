@@ -6,9 +6,10 @@ import MuiThemeProvider           from 'material-ui/styles/MuiThemeProvider';
 import { HashRouter, Route }      from 'react-router-dom'
 
 /* application containers */
-import Header     from '../Header';
-import LeftNavBar from '../LeftNavBar';
-import Home       from '../Home';
+import Header     from './Header';
+import Footer     from './Footer';
+import LeftNavBar from './LeftNavBar';
+import Home       from './Home';
 
 injectTapEventPlugin();
 
@@ -30,6 +31,7 @@ export class App extends Component {
             </HashRouter>
           </div>
           <LeftNavBar />
+          <Footer/>
         </div>
       </MuiThemeProvider>
     );

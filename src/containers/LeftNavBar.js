@@ -6,7 +6,7 @@ import { Drawer,
          Divider }            from 'material-ui';
 
 /* actions */
-import * as uiActionCreators   from '../../core/actions/actions-ui';
+import * as uiActionCreators   from '../core/actions/actions-ui';
 
 class LeftNavBar extends Component {
   constructor(props) {
