@@ -10,7 +10,7 @@ import App            from './containers/App';
 import Home            from './containers/Home';
 import Item1            from './containers/Item1';
 import Item2            from './containers/Item2';
-import routes from './routes'
+import Routes from './routes'
 
 injectTapEventPlugin();
 
@@ -22,11 +22,7 @@ function startApp() {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history} >
-        <App>
-            <Route exact path="/" component={Home}/>
-            <Route path="/item1" component={Item1}/>
-            <Route path="/item2" component={Item2}/>
-        </App>
+        <Routes/>
       </Router>
     </Provider>,
     document.getElementById('app')

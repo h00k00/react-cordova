@@ -24,6 +24,10 @@ const styles = {
 export class App extends Component {
   constructor(props) {
     super(props)
+
+    if (window.cordova) {
+        screen.orientation.lock('portrait');
+    }
   }
 
   handleToggle=() => {
@@ -35,7 +39,6 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { children } = this.props
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -49,10 +52,12 @@ export class App extends Component {
                   open={this.props.ui.leftNavOpen}
                   onRequestChange={this.closeNav}>
                   <Menu>
-                  <MenuItem primaryText="Item 1"
-                            onTouchTap={() => this.closeNav()}/>
-                  <MenuItem primaryText="Item 2"
-                            onTouchTap={() => this.closeNav()}/>
+                    <MenuItem primaryText="Item 1"
+                              href="item1"
+                              onTouchTap={() => this.closeNav()}/>
+                    <MenuItem primaryText="Item 2"
+                              href="item2"
+                              onTouchTap={() => this.closeNav()}/>
                   </Menu>
           </Drawer>
           <div style={{marginTop: '64px', height: '100%'}}>
@@ -65,7 +70,6 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
   ui: state.ui
 })
 
