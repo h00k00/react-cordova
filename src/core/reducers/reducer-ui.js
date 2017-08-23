@@ -1,10 +1,11 @@
 import constants from '../types';
 
 const initialState = {
-  leftNavOpen: false
+  leftNavOpen: false,
+  selectedView: "home"
 };
 
-export function uiReducer(state = initialState, action) {
+export const uiReducer = (state = initialState, action) => {
   switch (action.type) {
 
   case constants.OPEN_NAV:

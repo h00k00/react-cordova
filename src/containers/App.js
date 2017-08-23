@@ -1,23 +1,17 @@
-import React, { Component }       from 'react';
-import { connect }                from 'react-redux';
-import { bindActionCreators }     from 'redux';
-import injectTapEventPlugin       from 'react-tap-event-plugin';
-import getMuiTheme                from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider           from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import Paper from 'material-ui/Paper';
-import { HashRouter, Route }      from 'react-router-dom'
+import React, { Component }       from 'react'
+import { Link }                   from 'react-router'
+import { connect }                from 'react-redux'
+import { bindActionCreators }     from 'redux'
+import getMuiTheme                from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider           from 'material-ui/styles/MuiThemeProvider'
+import AppBar   from 'material-ui/AppBar'
+import Drawer   from 'material-ui/Drawer'
+import Menu     from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
+import Paper    from 'material-ui/Paper'
 
 /* actions */
-import * as uiActionCreators from '../core/actions/actions-ui';
-
-/* application containers */
-import Home       from './Home';
-import Item1       from './Item1';
-
-injectTapEventPlugin();
+import * as uiActionCreators from '../core/actions/actions-ui'
 
 const styles = {
   backgroundStyle: {
@@ -29,18 +23,20 @@ const styles = {
 
 export class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   handleToggle=() => {
-    this.props.actions.ui.openNav();
+    this.props.actions.ui.openNav()
   }
 
   closeNav=() => {
-    this.props.actions.ui.closeNav();
+    this.props.actions.ui.closeNav()
   }
 
   render() {
+    console.log(this.props)
+    const { children } = this.props
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={{height: '100vh'}}>
@@ -52,38 +48,32 @@ export class App extends Component {
                   disableSwipeToOpen={true}
                   open={this.props.ui.leftNavOpen}
                   onRequestChange={this.closeNav}>
-            <MenuItem primaryText="Menu 1"/>
-            <MenuItem primaryText="Menu 2"/>
+                  <Menu>
+                  <MenuItem primaryText="Item 1"
+                            onTouchTap={() => this.closeNav()}/>
+                  <MenuItem primaryText="Item 2"
+                            onTouchTap={() => this.closeNav()}/>
+                  </Menu>
           </Drawer>
           <div style={{marginTop: '64px', height: '100%'}}>
-            <Paper zDepth={1} style={styles.backgroundStyle}>
-            <HashRouter>
-              <div>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/item1" component={Item1}/>
-              </div>
-            </HashRouter>
-            </Paper>
+          {children}
           </div>
         </div>
       </MuiThemeProvider>
-    );
+    )
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.user,
-    ui: state.ui
-  };
-}
+const mapStateToProps = state => ({
+  user: state.user,
+  ui: state.ui
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
+
+const mapDispatchToProps = dispatch => ({
     actions: {
       ui: bindActionCreators(uiActionCreators, dispatch)
     }
-  };
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
