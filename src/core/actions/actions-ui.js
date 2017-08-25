@@ -1,19 +1,19 @@
 import constants from '../types'
 
 /**
- * openNav - Open the side nav
+ * openDrawer - Open the side nav
  */
-export function openNav() {
+export function openDrawer() {
   return {
-    type: constants.OPEN_NAV
+    type: constants.OPEN_DRAWER
   }
 }
 
 /**
- * closeNav - Close the side nav
+ * closeDrawer - Close the side nav
  */
-export function closeNav() {
+export function closeDrawer() {
   return {
-    type: constants.CLOSE_NAV
+    type: constants.CLOSE_DRAWER
   }
 }

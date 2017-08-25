@@ -32,12 +32,12 @@ export class App extends Component {
     }
   }
 
-  handleToggle=() => {
-    this.props.actions.ui.openNav()
+  openDrawer=() => {
+    this.props.actions.ui.openDrawer()
   }
 
-  closeNav=() => {
-    this.props.actions.ui.closeNav()
+  closeDrawer=() => {
+    this.props.actions.ui.closeDrawer()
   }
 
   render() {
@@ -47,22 +47,22 @@ export class App extends Component {
           <AppBar title="Example"
                   className="app-bar"
                   style={{position: 'fixed', top: '0'}}
-                  onLeftIconButtonTouchTap= {this.handleToggle} />
+                  onLeftIconButtonTouchTap= {this.openDrawer} />
           <Drawer docked={false}
                   disableSwipeToOpen={true}
-                  open={this.props.ui.leftNavOpen}
-                  onRequestChange={this.closeNav}>
+                  open={this.props.ui.drawerOpen}
+                  onRequestChange={this.closeDrawer}>
                   <Menu>
                     <MenuItem primaryText="Home"
                               containerElement={<Link to="/"/>}
-                              onTouchTap={this.closeNav}/>
+                              onTouchTap={this.closeDrawer}/>
                     <Divider/>
                     <MenuItem primaryText="Item 1"
                               containerElement={<Link to="/item1"/>}
-                              onTouchTap={this.closeNav}/>
+                              onTouchTap={this.closeDrawer}/>
                     <MenuItem primaryText="Item 2"
                               containerElement={<Link to="/item2"/>}
-                              onTouchTap={this.closeNav}/>
+                              onTouchTap={this.closeDrawer}/>
                   </Menu>
           </Drawer>
           <Paper style={{marginTop: '64px', height: '100%'}}>

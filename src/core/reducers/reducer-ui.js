@@ -1,20 +1,20 @@
 import constants from '../types'
 
 const initialState = {
-  leftNavOpen: false
+  drawerOpen: false
 }
 
 export const uiReducer = (state = initialState, action) => {
   switch (action.type) {
 
-  case constants.OPEN_NAV:
+  case constants.OPEN_DRAWER:
     return Object.assign({}, state, {
-      leftNavOpen: true
+      drawerOpen: true
     })
 
-  case constants.CLOSE_NAV:
+  case constants.CLOSE_DRAWER:
     return Object.assign({}, state, {
-      leftNavOpen: false
+      drawerOpen: false
     })
 
   default:
