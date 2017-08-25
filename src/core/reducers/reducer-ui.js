@@ -1,9 +1,8 @@
-import constants from '../types';
+import constants from '../types'
 
 const initialState = {
-  leftNavOpen: false,
-  selectedView: "home"
-};
+  leftNavOpen: false
+}
 
 export const uiReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,14 +10,14 @@ export const uiReducer = (state = initialState, action) => {
   case constants.OPEN_NAV:
     return Object.assign({}, state, {
       leftNavOpen: true
-    });
+    })
 
   case constants.CLOSE_NAV:
     return Object.assign({}, state, {
       leftNavOpen: false
-    });
+    })
 
   default:
-    return state;
+    return state
   }
 }

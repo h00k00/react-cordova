@@ -1,14 +1,16 @@
 import React, { Component }       from 'react'
-import { Link }                   from 'react-router'
+import { Link, withRouter }       from 'react-router-dom'
 import { connect }                from 'react-redux'
 import { bindActionCreators }     from 'redux'
 import getMuiTheme                from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider           from 'material-ui/styles/MuiThemeProvider'
-import AppBar   from 'material-ui/AppBar'
-import Drawer   from 'material-ui/Drawer'
-import Menu     from 'material-ui/Menu'
-import MenuItem from 'material-ui/MenuItem'
-import Paper    from 'material-ui/Paper'
+import AppBar                     from 'material-ui/AppBar'
+import Drawer                     from 'material-ui/Drawer'
+import Menu                       from 'material-ui/Menu'
+import MenuItem                   from 'material-ui/MenuItem'
+import Paper                      from 'material-ui/Paper'
+import Divider                    from 'material-ui/Divider'
+import Routes                     from '../routes'
 
 /* actions */
 import * as uiActionCreators from '../core/actions/actions-ui'
@@ -39,7 +41,6 @@ export class App extends Component {
   }
 
   render() {
-    const { children } = this.props
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div style={{height: '100vh'}}>
@@ -52,17 +53,21 @@ export class App extends Component {
                   open={this.props.ui.leftNavOpen}
                   onRequestChange={this.closeNav}>
                   <Menu>
+                    <MenuItem primaryText="Home"
+                              containerElement={<Link to="/"/>}
+                              onTouchTap={this.closeNav}/>
+                    <Divider/>
                     <MenuItem primaryText="Item 1"
-                              href="item1"
-                              onTouchTap={() => this.closeNav()}/>
+                              containerElement={<Link to="/item1"/>}
+                              onTouchTap={this.closeNav}/>
                     <MenuItem primaryText="Item 2"
-                              href="item2"
-                              onTouchTap={() => this.closeNav()}/>
+                              containerElement={<Link to="/item2"/>}
+                              onTouchTap={this.closeNav}/>
                   </Menu>
           </Drawer>
-          <div style={{marginTop: '64px', height: '100%'}}>
-          {children}
-          </div>
+          <Paper style={{marginTop: '64px', height: '100%'}}>
+            <Routes/>
+          </Paper>
         </div>
       </MuiThemeProvider>
     )
@@ -70,7 +75,8 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  ui: state.ui
+  ui: state.ui,
+  routing: state.routing
 })
 
 
@@ -79,5 +85,4 @@ const mapDispatchToProps = dispatch => ({
       ui: bindActionCreators(uiActionCreators, dispatch)
     }
 })
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

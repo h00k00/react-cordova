@@ -1,4 +1,4 @@
-import constants from '../types';
+import constants from '../types'
 
 /**
  * openNav - Open the side nav
@@ -6,7 +6,7 @@ import constants from '../types';
 export function openNav() {
   return {
     type: constants.OPEN_NAV
-  };
+  }
 }
 
 /**
@@ -15,5 +15,5 @@ export function openNav() {
 export function closeNav() {
   return {
     type: constants.CLOSE_NAV
-  };
+  }
 }
